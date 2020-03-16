@@ -15,32 +15,48 @@
 //  You should return 45, as it is (3 + 2) * (4 + 5).
 
 class BinaryTree {
-  var rootNode;
-  var leftBranch;
-  var rightBranch;
-  BinaryTree({this.rootNode = null, this.leftBranch, this.rightBranch = null});
+  String rootNode;
+  BinaryTree leftBranch;
+  BinaryTree rightBranch;
+  BinaryTree({this.rootNode, this.leftBranch=null, this.rightBranch = null});
 
-  int result() {
-    if (rootNode == '+') return rightBranch + leftBranch;
-    if (rootNode == '*') return leftBranch * rightBranch;
-    if (rootNode == '/') return int.parse((leftBranch / rightBranch).toString());
-    if (rootNode == '-') return leftBranch-rightBranch;
+}
+bool isNumeric(String str) {
+  try{
+    var value = double.parse(str);
+  } on FormatException {
+    return false;
+  } finally {
+    return true;
   }
 }
+String calculator(String a, String b,String op){
+  double x=double.parse(a);
+  double y=double.parse(b);
+  if(op=="+")
+      return (x+y).toString();
+  if(op=="-")
+    return (x-y).toString();
+  if(op=="*")
+    return (x*y).toString();
+  if(op=="/")
+    return (x/y).toString();
+}
 
-dynamic evaluateBt(BinaryTree root) {
-  int res;
+String evaluateTree(BinaryTree root) {
   if(root.leftBranch==null && root.rightBranch==null)
-    return root.rootNode;
-  if (root.leftBranch is int && root.leftBranch is int)
-    return root.result();
-  return root.result();
+    //if both are null that means it must be an integer or double
+    return double.parse(root.rootNode).toString();
+  else
+    return calculator(evaluateTree(root.rightBranch), evaluateTree(root.leftBranch), root.rootNode);
+
 }
 
 void main() {
-  BinaryTree b = BinaryTree(rootNode: '+', leftBranch: 2, rightBranch: 3);
-  BinaryTree a = BinaryTree(rootNode: '+', leftBranch: 2, rightBranch: 3);
-  BinaryTree c = BinaryTree(rootNode: '+');
-  print(evaluateBt(a));
-  print(evaluateBt(c));
+  BinaryTree b= BinaryTree(rootNode:"2",);
+
+  BinaryTree d= BinaryTree(rootNode:"3",);
+  BinaryTree c= BinaryTree(rootNode:"3",leftBranch: d);
+  BinaryTree a= BinaryTree(rootNode:"+",rightBranch: b,leftBranch: c );
+  print(evaluateTree(a));
 }
