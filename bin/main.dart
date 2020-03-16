@@ -24,11 +24,16 @@ class BinaryTree {
 bool isNumeric(String str) {
   try{
     var value = double.parse(str);
+    if(value is num)
+      return true;
+    else
+      return false;
   } on FormatException {
     return false;
-  } finally {
-    return true;
   }
+//  finally {
+//    return true;
+//  }
 }
 String calculator(String a, String b,String op){
   double x=double.parse(a);
