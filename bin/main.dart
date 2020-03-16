@@ -38,6 +38,7 @@ bool isNumeric(String str) {
 String calculator(String a, String b,String op){
   double x=double.parse(a);
   double y=double.parse(b);
+  return operations[op](x,y).toString();
   if(op=="+")
       return (x+y).toString();
   if(op=="-")
@@ -47,7 +48,12 @@ String calculator(String a, String b,String op){
   if(op=="/")
     return (x/y).toString();
 }
-
+Map<String,Function> operations = {
+  '+': (double x, double y) => x+y,
+  '-': (double x, double y) => x-y,
+  '*': (double x, double y)  => x*y,
+  '/': (double x, double y)  => x/y,
+};
 String evaluateTree(BinaryTree root) {
 
   String left;
