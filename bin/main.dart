@@ -44,12 +44,24 @@ String calculator(String a, String b,String op){
 }
 
 String evaluateTree(BinaryTree root) {
-  if(root.leftBranch==null && root.rightBranch==null)
-    //if both are null that means it must be an integer or double
-    return double.parse(root.rootNode).toString();
-  else
-    return calculator(evaluateTree(root.rightBranch), evaluateTree(root.leftBranch), root.rootNode);
 
+  String left;
+  String right;
+
+  if(isNumeric(root.rootNode))
+    return root.rootNode;
+
+  //check if left node is numeric or not
+  if(isNumeric(root.leftBranch.rootNode))
+    left=root.leftBranch.rootNode;
+  else
+    left=evaluateTree(root.leftBranch);
+  if(isNumeric(root.rightBranch.rootNode))
+    right=root.rightBranch.rootNode;
+  else
+    right=evaluateTree(root.rightBranch);
+
+  return calculator(left, right, root.rootNode);
 }
 
 void main() {
