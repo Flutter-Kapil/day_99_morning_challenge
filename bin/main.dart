@@ -28,7 +28,7 @@ class BinaryTree {
   }
 }
 
-int evaluateBt(BinaryTree root) {
+dynamic evaluateBt(BinaryTree root) {
   int res;
   if(root.leftBranch==null && root.rightBranch==null)
     return root.rootNode;
@@ -39,6 +39,8 @@ int evaluateBt(BinaryTree root) {
 
 void main() {
   BinaryTree b = BinaryTree(rootNode: '+', leftBranch: 2, rightBranch: 3);
-  BinaryTree a = BinaryTree(rootNode: '+', leftBranch: 2, rightBranch: b);
+  BinaryTree a = BinaryTree(rootNode: '+', leftBranch: 2, rightBranch: 3);
+  BinaryTree c = BinaryTree(rootNode: '+');
   print(evaluateBt(a));
+  print(evaluateBt(c));
 }
