@@ -76,4 +76,16 @@ void main() {
   BinaryTree c= BinaryTree(rootNode:"3",leftBranch: d);
   BinaryTree a= BinaryTree(rootNode:"+",rightBranch: b,leftBranch: c );
   print(evaluateTree(a));
+
+  BinaryTree d2= BinaryTree(rootNode:"2",);
+  BinaryTree e2= BinaryTree(rootNode:"+",rightBranch: b,leftBranch: c );
+  BinaryTree f2= BinaryTree(rootNode:"4",);
+  BinaryTree g2= BinaryTree(rootNode:"2",);
+  BinaryTree b2= BinaryTree(rootNode:"/",leftBranch: d2,rightBranch: e2);
+  BinaryTree c2= BinaryTree(rootNode:"*",leftBranch: f2,rightBranch: g2);
+  BinaryTree a2= BinaryTree(rootNode:"+",rightBranch: b2,leftBranch: c2 );
+  print(evaluateTree(a2));
+
+  e2=BinaryTree(rootNode:"+",rightBranch: b,leftBranch: c );
+  print(evaluateTree(a2));
 }
